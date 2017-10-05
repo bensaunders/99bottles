@@ -1,5 +1,8 @@
 gem 'minitest', '~> 5.4'
 require 'minitest/autorun'
+require 'minitest/reporters'
+reporter_options = { color: true, detailed_skip: false }
+Minitest::Reporters.use! [Minitest::Reporters::SpecReporter.new(reporter_options)]
 require_relative '../lib/bottles'
 
 class BottlesTest < Minitest::Test
