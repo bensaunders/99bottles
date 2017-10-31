@@ -5,19 +5,11 @@ class BottleNumber
   end
 
   def successor
-    if number == 0
-      99
-    else
-      number - 1
-    end
+    number - 1
   end
 
   def action
-    if number == 0
-      'Go to the store and buy some more'
-    else
-      "Take #{pronoun} down and pass it around"
-    end
+    "Take #{pronoun} down and pass it around"
   end
 
   def quantity
@@ -25,19 +17,11 @@ class BottleNumber
   end
 
   def pronoun
-    if number == 1
-      'it'
-    else
-      'one'
-    end
+    'one'
   end
 
   def container
-    if number == 1
-      'bottle'
-    else
-      'bottles'
-    end
+    'bottles'
   end
 
   def to_s
@@ -48,6 +32,24 @@ end
 class BottleNumber0 < BottleNumber
   def quantity
     'no more'
+  end
+
+  def successor
+    99
+  end
+
+  def action
+    'Go to the store and buy some more'
+  end
+end
+
+class BottleNumber1 < BottleNumber
+  def pronoun
+    'it'
+  end
+
+  def container
+    'bottle'
   end
 end
 
@@ -71,8 +73,11 @@ class Bottles
   end
 
   def bottle_number_for(number)
-    if number == 0
+    case number
+    when 0
       BottleNumber0
+    when 1
+        BottleNumber1
     else
       BottleNumber
     end.new(number)
